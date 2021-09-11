@@ -8,3 +8,15 @@
 <link rel="stylesheet" href="{{ asset('dashboard/plugins/fontawesome-free/css/all.min.css')}}">
 <!-- Theme style -->
 <link rel="stylesheet" href="{{ asset('dashboard/dist/css/adminlte.min.css')}}">
+
+
+
+<!-- jsGrid -->
+<link rel="stylesheet" href="{{ asset('dashboard/plugins/jsgrid/jsgrid.min.css')}}">
+<link rel="stylesheet" href="{{ asset('dashboard/plugins/jsgrid/jsgrid-theme.min.css')}}">
+<link rel="stylesheet" href="{{ asset('dashboard/custom.css')}}">
+
+
+<!-- Google Font: Source Sans Pro -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+
