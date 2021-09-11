@@ -4,18 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PharmaciesProducts extends Model
 {
-    use SoftDeletes, HasFactory;
+    use  HasFactory;
 
     protected $table = "pharmacies_products";
 
     protected $dates = [
         'created_at',
         'updated_at',
-        'deleted_at',
     ];
 
     protected $fillable = [
@@ -28,8 +26,13 @@ class PharmaciesProducts extends Model
         'deleted_at',
     ];
 
-    protected function serializeDate(DateTimeInterface $date)
+    public function products()
     {
-        return $date->format('Y-m-d H:i:s');
+        return $this->belongsTo(Products::class);
     }
+    public function pharmacies()
+    {
+        return $this->belongsTo(Pharmacies::class);
+    }
+
 }
