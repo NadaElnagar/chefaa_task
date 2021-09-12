@@ -56,6 +56,12 @@
                         <p>add Prices</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{url('search_view')}}" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>search </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

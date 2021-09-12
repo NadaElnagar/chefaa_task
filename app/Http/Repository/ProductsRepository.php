@@ -60,7 +60,7 @@ class ProductsRepository
     }
 
     public function search($title)
-    {
+    {dd(Products::where('title', 'like', '%' . $title . '%')->toSql());
       return  Products::where('title', 'like', '%' . $title . '%')->get();
     }
 }

@@ -70,23 +70,25 @@
     <script>
         $('#input_search').keyup(function() {
             var title =  $(this).val();
+
+            $.ajax({
+                url: "{{url('/autocomplete/')}}"+'/'+title,
+                type: "get",
+                success: function (response) {
+
                     var table = $('#items_datatable').DataTable({
-                        processing: true,
-                        serverSide: true,
-                        order: [ [0, 'desc'] ],
-                        ajax: {
-                            url: "{{url('/autocomplete/')}}"+'/'+title,
-                            type: "get",
-                            data: {
-                                "_token": "{{ csrf_token() }}",
-                            },
-                        },
+                        data: response,
                         columns: [
                             {data:'id',name:'id'},
                             {data: 'title',name:'title'},
-
                         ]
                     });
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert('Error');
+                }
+            });
         });
     </script>
 
