@@ -103,4 +103,14 @@ class ProductsControllers extends Controller
             return $this->responseWithFailure(Response::HTTP_BAD_REQUEST, __('messages.Error, Please Try again Letter'));
         }
     }
+
+    public function search($title)
+    {
+        $products =  $this->products->search($title);
+        if($products){
+            return $this->reponse->responseWithSuccess(ProductsResource::collection($products));
+        }else{
+            return $this->responseWithFailure(Response::HTTP_BAD_REQUEST, __('messages.Error, Please Try again Letter'));
+        }
+    }
 }
