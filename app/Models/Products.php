@@ -61,7 +61,7 @@ class Products extends Model  implements HasMedia
 
     public function pharmacies()
     {
-        return $this->belongsToMany(Pharmacies::class,'pharmacies_products');
+        return $this->belongsToMany(Pharmacies::class,'pharmacies_products')->withPivot('price','quantity');;
     }
 
 }

@@ -44,7 +44,61 @@
                             <!-- /.card-header -->
                             <div class="card-body table-responsive p-0">
 
+                                <div class="invoice p-3 mb-3">
+                                    <!-- title row -->
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h4>
+                                                <i class="fas fa-globe"></i>Product Name
+                                                <small class="float-right">{{ $product->title }}</small>
+                                            </h4>
+                                        </div>
+                                        <!-- /.col -->
+                                    </div>
+                                    <!-- info row -->
+                                    <div class="row invoice-info">
+                                        <div class="col-sm-12 invoice-col">
+                                            <address>
+                                                <strong>Product Description</strong><br>
+                                                {{ $product->description }}
+                                            </address>
+                                        </div>
 
+
+                                    </div>
+                                    <!-- /.row -->
+
+                                    <!-- Table row -->
+                                    <div class="row">
+                                        <div class="col-12 table-responsive">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th>pharmacy ID</th>
+                                                    <th>pharmacy Name</th>
+                                                    <th>Price #</th>
+                                                    <th>qunatity</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                @if($product->pharmacies)
+                                                    @foreach($product->pharmacies  as $pharmacy)
+                                                <tr>
+                                                     <td>{{$pharmacy->id}}</td>
+                                                    <td>{{$pharmacy->name}}</td>
+                                                    <td>{{$pharmacy->pivot->price}}</td>
+                                                    <td>{{$pharmacy->pivot->quantity}}</td>
+                                                </tr>
+                                                    @endforeach
+                                                    @endif
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!-- /.col -->
+                                    </div>
+                                    <!-- /.row -->
+
+                                </div>
 
                             </div>
 
