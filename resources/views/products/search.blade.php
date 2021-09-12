@@ -33,7 +33,12 @@
                                         <input type="text" id="input_search" name="table_search" class="form-control float-right"
                                                placeholder="Search">
 
-                                     </div>
+                                        <div class="input-group-append">
+                                            <button id="search_submit" type="submit" class="btn btn-default">
+                                                <i class="fas fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body table-responsive p-0">
@@ -44,7 +49,9 @@
                                         <th>title</th>
                                      </tr>
                                     </thead>
+                                    <tbody id="body_search">
 
+                                    </tbody>
                                 </table>
                             </div>
 
@@ -68,22 +75,18 @@
     <script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.1/js/dataTables.bootstrap4.min.js"></script>
     <script>
-        $('#input_search').keyup(function() {
-            var title =  $(this).val();
+        $('#search_submit').click(function() {
+            var title =  $('#input_search').val();
 
             $.ajax({
                 url: "{{url('/autocomplete/')}}"+'/'+title,
                 type: "get",
-                success: function (response) {
+                success: function (data) {
+                    $("#body_search").empty();
+                    jQuery.each(data, function(index, itemData) {
+                         $("#body_search").append('<tr><td>'+itemData.id+'</td><td>'+itemData.title+'</td></tr>');
 
-                    var table = $('#items_datatable').DataTable({
-                        data: response,
-                        columns: [
-                            {data:'id',name:'id'},
-                            {data: 'title',name:'title'},
-                        ]
                     });
-
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     alert('Error');
