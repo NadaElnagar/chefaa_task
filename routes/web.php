@@ -19,3 +19,6 @@ Route::get('/', function () {
 Route::resource('products', \App\Http\Controllers\ProductsControllers::class);
 Route::resource('pharmacies', \App\Http\Controllers\PharmaciesControllers::class);
 Route::resource('pharmacies_products', \App\Http\Controllers\PharmaciesProductsControllers::class);
+
+Route::get('/search_view', [\App\Http\Controllers\ProductsControllers::class, 'searchView']);
+Route::get('/autocomplete/{title}', [\App\Http\Controllers\ProductsControllers::class, 'autocomplete']);

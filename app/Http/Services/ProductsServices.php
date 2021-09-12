@@ -78,4 +78,10 @@ class ProductsServices
     {
         return   $this->products->destroy($id);
     }
+
+
+    public function search($title)
+    {
+        return   $this->products->search($title);
+    }
 }

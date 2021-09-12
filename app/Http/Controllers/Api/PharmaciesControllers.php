@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Api;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\pharmaciesRequest;
 use App\Http\Resources\PharmacyResource;
 use App\Http\Services\PharmaciesServices;

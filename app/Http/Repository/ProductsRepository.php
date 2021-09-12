@@ -58,4 +58,9 @@ class ProductsRepository
         }
         return false;
     }
+
+    public function search($title)
+    {
+      return  Products::where('title', 'like', '%' . $title . '%')->get();
+    }
 }

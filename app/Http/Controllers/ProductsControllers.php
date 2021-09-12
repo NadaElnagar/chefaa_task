@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductsStoreRequest;
 use App\Http\Requests\ProductsUpdateRequest;
 use App\Http\Services\ProductsServices;
@@ -104,5 +105,15 @@ class ProductsControllers extends Controller
     public function destroy($id)
     {
         return $this->products->destroy($id);
+    }
+
+    public function searchView()
+    {
+        return view('products/search' );
+    }
+
+    public function autocomplete($title)
+    {
+        return $this->products->search($title);
     }
 }
