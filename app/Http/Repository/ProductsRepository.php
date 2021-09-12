@@ -61,6 +61,6 @@ class ProductsRepository
 
     public function search($title)
     {
-      return  Products::where('title', 'like', '%' . $title . '%')->paginate(10);
+      return  Products::where('title', 'like', '%' . $title . '%')->get();
     }
 }

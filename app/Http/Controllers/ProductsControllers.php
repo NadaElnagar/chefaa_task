@@ -114,6 +114,6 @@ class ProductsControllers extends Controller
 
     public function autocomplete($title)
     {
-        return $this->products->search($title);
+        return   \Response::json($this->products->search($title), 200);;
     }
 }
