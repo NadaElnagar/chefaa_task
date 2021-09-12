@@ -18,7 +18,8 @@ class ProductsResource extends JsonResource
             'id'=>$this->id,
             'name'=>$this->title,
             'address'=>$this->description,
-            'pharmacise'=>$this->pharmacies
+            'pharmacise'=>$this->pharmacies,
+            'image'=>$this->image
         );
     }
 }
