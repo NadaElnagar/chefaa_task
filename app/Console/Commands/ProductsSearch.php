@@ -2,7 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Http\Resources\PharmacyResource;
+use App\Models\PharmaciesProducts;
 use Illuminate\Console\Command;
+use Response;
 
 class ProductsSearch extends Command
 {
@@ -37,8 +40,13 @@ class ProductsSearch extends Command
      */
     public function handle()
     {
+        $result = [];
         $productId = $this->argument('product_id');
-        echo $productId;
-        return $productId;
+        $pharmacies_products =  PharmaciesProducts::where('products_id',$productId)->orderBy('price', 'asc')->limit(5)->get();
+        if(!empty($pharmacies_products)){
+            $result = PharmacyResource::collection($pharmacies_products);
+        }
+        print_r($result);
+      //  return \Response::json($result, 200);
     }
 }
