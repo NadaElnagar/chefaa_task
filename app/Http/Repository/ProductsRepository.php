@@ -20,7 +20,7 @@ class ProductsRepository
             }
             return true;
         }catch (\Exception $ex){
-            return  true;
+            return  false;
         }
     }
 
@@ -32,15 +32,15 @@ class ProductsRepository
 
     public function update($request,$id)
     {
-       $product =  Products::where('id',$id)->update($request);
+        $data = request()->except(['_method', '_token','image']);
+        $product =  Products::where('id',$id)->update($data);
 
         if (isset($request['image'])) {
             if (!$product->image || $request['image'] !== $product->image->file_name) {
                 if ($product->image) {
                     $product->image->delete();
                 }
-
-                $product->addMedia(storage_path('tmp/uploads/' . basename($request['image'])))->toMediaCollection('image');
+                $product->addMedia(storage_path('app\public\\' . basename($request['image'])))->toMediaCollection('products');
             }
         } elseif ($product->image) {
             $product->image->delete();

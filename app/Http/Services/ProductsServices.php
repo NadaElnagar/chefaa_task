@@ -64,8 +64,8 @@ class ProductsServices
      */
     public function update($request, $id)
     {
-        $data = request()->except(['_method', '_token']);
-        return   $this->products->update($data,$id);
+
+        return   $this->products->update($request,$id);
     }
 
     /**
