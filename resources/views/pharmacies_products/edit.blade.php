@@ -46,26 +46,39 @@
                             @endif
                         </div>
                         <div class="card-body table-responsive p-0">
-                                 {!! Form::open(['url' => ['/pharmacies', $pharmacies->id],'method'=>'PATCH', 'id'=>'form']) !!}
-                                {{ csrf_field() }}
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <label for="exampleInputTitle">Title</label>
-                                        <input type="text" class="form-control" name="name" id="exampleInputTitle" value="{{$pharmacies->name}}" required/>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputDescription">Address</label>
-                                        <textarea id="exampleInputDescription"    class="form-control"  name="address" required>
-                                           {{$pharmacies->address}}
-                                            </textarea>
-                                    </div>
-
+                                 {!! Form::open(['url' => ['/pharmacies_products', $pharmacies->id],'method'=>'PATCH', 'id'=>'form']) !!}
+                            {{ csrf_field() }}
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="exampleInputTitle">Product</label>
+                                    <select name="products_id" class="form-control">
+                                        @foreach($data['products'] as $product)
+                                            <option value="{{$product->id}}" @if($product->id == $pharmacies->products_id) selected @endif>{{$product->title}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                                <!-- /.card-body -->
-
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                <div class="form-group">
+                                    <label for="exampleInputTitle">Pharmacies</label>
+                                    <select name="pharmacies_id" class="form-control">
+                                        @foreach($data['pharmacies'] as $pharmacy)
+                                            <option value="{{$pharmacy->id}}" @if($pharmacy->id == $pharmacies->pharmacies_id) selected @endif>{{$pharmacy->name}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
+                                <div class="form-group">
+                                    <label for="exampleInputTitle">price</label>
+                                    <input type="number" class="form-control" name="price" id="exampleInputTitle" min="0" value="{{$pharmacies->price}}" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputTitle">quantity</label>
+                                    <input type="number" class="form-control" name="quantity" id="exampleInputTitle" min="0"value="{{$pharmacies->quantity}}"  required/>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
                             {!! Form::close() !!}
                         </div>
 

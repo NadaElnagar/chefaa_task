@@ -52,13 +52,26 @@
                                         <div class="form-group">
                                             <label for="exampleInputTitle">Product</label>
                                             <select name="products_id" class="form-control">
-
+                                                @foreach($data['products'] as $product)
+                                                    <option value="{{$product->id}}">{{$product->title}}</option>
+                                                @endforeach
                                             </select>
                                          </div>
                                         <div class="form-group">
-                                            <label for="exampleInputDescription">Address</label>
-                                            <textarea id="exampleInputDescription"  placeholder="Enter Address"  class="form-control"  name="address" required>
-                                            </textarea>
+                                            <label for="exampleInputTitle">Pharmacies</label>
+                                            <select name="pharmacies_id" class="form-control">
+                                                @foreach($data['pharmacies'] as $pharmacy)
+                                                    <option value="{{$pharmacy->id}}">{{$pharmacy->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                             <div class="form-group">
+                                                <label for="exampleInputTitle">price</label>
+                                                <input type="number" class="form-control" name="price" id="exampleInputTitle" min="0" placeholder="Enter price" required/>
+                                            </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputTitle">quantity</label>
+                                            <input type="number" class="form-control" name="quantity" id="exampleInputTitle" min="0" placeholder="Enter quantity" required/>
                                         </div>
                                     </div>
                                     <!-- /.card-body -->

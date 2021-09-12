@@ -21,7 +21,10 @@ class PharmaciesProductsServices
         return   $this->pharmacies->index();
     }
 
-
+    public function getData()
+    {
+        return   $this->pharmacies->getData();
+    }
     /**
      * Store a newly created resource in storage.
      *

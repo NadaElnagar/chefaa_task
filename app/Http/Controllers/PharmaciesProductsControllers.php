@@ -33,7 +33,8 @@ class PharmaciesProductsControllers  extends Controller
      */
     public function create()
     {
-        return view('pharmacies_products.create');
+        $data = $this->pharmacies->getData();
+        return view('pharmacies_products.create',compact('data'));
     }
 
     /**
@@ -72,8 +73,9 @@ class PharmaciesProductsControllers  extends Controller
      */
     public function edit($id)
     {
+        $data = $this->pharmacies->getData();
         $pharmacies = $this->pharmacies->show($id);
-        return view('pharmacies_products/edit', compact('pharmacies'));
+        return view('pharmacies_products/edit', compact('pharmacies','data'));
     }
 
     /**

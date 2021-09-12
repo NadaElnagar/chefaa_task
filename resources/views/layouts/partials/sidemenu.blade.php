@@ -50,6 +50,12 @@
                         <p>Pharmacies</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{url('pharmacies_products')}}" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>add Prices</p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

@@ -2,7 +2,9 @@
 
 namespace App\Http\Repository;
 
+use App\Models\Pharmacies;
 use App\Models\PharmaciesProducts;
+use App\Models\Products;
 
 class PharmaciesProductsRepository
 {
@@ -11,16 +13,20 @@ class PharmaciesProductsRepository
         return PharmaciesProducts::paginate(10);
     }
 
+
+    public function getData()
+    {
+       $data['products'] = Products::get();
+       $data['pharmacies'] = Pharmacies::get();
+       return $data;
+    }
+
     public function updateOrCreate($request)
     {
-        try{
-           PharmaciesProducts::updateOrCreate(['products_id'=>$request['products_id'],
+            PharmaciesProducts::updateOrCreate(['products_id'=>$request['products_id'],
                 'pharmacies_id'=>$request['pharmacies_id']
-                ],['quantity'=>$request['quantity'],['price'=>$request['price']]]);
+            ],['quantity'=>$request['quantity'],'price'=>$request['price']]);
             return true;
-        }catch (\Exception $ex){
-            return  false;
-        }
     }
 
     public function show($id)
