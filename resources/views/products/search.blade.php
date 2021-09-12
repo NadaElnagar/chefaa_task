@@ -75,16 +75,19 @@
     <script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.1/js/dataTables.bootstrap4.min.js"></script>
     <script>
+        <?php $editurl = url('/products/');?>
         $('#search_submit').click(function() {
             var title =  $('#input_search').val();
-
             $.ajax({
                 url: "{{url('/autocomplete/')}}"+'/'+title,
                 type: "get",
                 success: function (data) {
                     $("#body_search").empty();
                     jQuery.each(data, function(index, itemData) {
-                         $("#body_search").append('<tr><td>'+itemData.id+'</td><td>'+itemData.title+'</td></tr>');
+                        var edit = "<a href='{{$editurl}}" + '/' + itemData.id  + "' class='btn btn-w" + "arning'><i class='fas fa-edit' data-toggle='tooltip' data-placement='top' title='Edit' ></i></a>&nbsp;";
+
+                        $("#body_search").append('<tr><td>'+itemData.id+'</td><td>'+itemData.title+'</td>' +
+                             "<td>"+edit+"<td></tr>");
 
                     });
                 },
