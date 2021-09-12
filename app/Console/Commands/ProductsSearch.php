@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Http\Resources\PharmacyResource;
+use App\Models\Pharmacies;
 use App\Models\PharmaciesProducts;
 use Illuminate\Console\Command;
 use Response;
@@ -42,9 +43,10 @@ class ProductsSearch extends Command
     {
         $result = [];
         $productId = $this->argument('product_id');
-        $pharmacies_products =  PharmaciesProducts::where('products_id',$productId)->orderBy('price', 'asc')->limit(5)->get();
+        $pharmacies_products =  PharmaciesProducts::where('products_id',$productId)->orderBy('price', 'asc')->limit(5)->pluck('pharmacies_id')->toarray();
         if(!empty($pharmacies_products)){
-            $result = PharmacyResource::collection($pharmacies_products);
+            $pharmacies = Pharmacies::wherein('id',$pharmacies_products)->get();
+            $result = PharmacyResource::collection($pharmacies);
         }
         print_r($result);
       //  return \Response::json($result, 200);

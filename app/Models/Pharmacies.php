@@ -34,6 +34,6 @@ class Pharmacies extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Products::class,'pharmacies_products');
+        return $this->belongsToMany(Products::class,'pharmacies_products')->withPivot('price','quantity');
     }
 }
