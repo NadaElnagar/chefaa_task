@@ -78,23 +78,28 @@
         <?php $editurl = url('/products/');?>
         $('#search_submit').click(function() {
             var title =  $('#input_search').val();
-            $.ajax({
-                url: "{{url('/autocomplete/')}}"+'/'+title,
-                type: "get",
-                success: function (data) {
-                    $("#body_search").empty();
-                    jQuery.each(data, function(index, itemData) {
-                        var edit = "<a href='{{$editurl}}" + '/' + itemData.id  + "' class='btn btn-w" + "arning'><i class='fas fa-edit' data-toggle='tooltip' data-placement='top' title='Edit' ></i></a>&nbsp;";
+            if(title.length >0){
+                $.ajax({
+                    url: "{{url('/autocomplete/')}}"+'/'+title,
+                    type: "get",
+                    success: function (data) {
+                        $("#body_search").empty();
+                        jQuery.each(data, function(index, itemData) {
+                            var edit = "<a href='{{$editurl}}" + '/' + itemData.id  + "' class='btn btn-w" + "arning'><i class='fas fa-edit' data-toggle='tooltip' data-placement='top' title='Edit' ></i></a>&nbsp;";
 
-                        $("#body_search").append('<tr><td>'+itemData.id+'</td><td>'+itemData.title+'</td>' +
-                             "<td>"+edit+"<td></tr>");
+                            $("#body_search").append('<tr><td>'+itemData.id+'</td><td>'+itemData.title+'</td>' +
+                                "<td>"+edit+"<td></tr>");
 
-                    });
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    alert('Error');
-                }
-            });
+                        });
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert('Error');
+                    }
+                });
+            }else{
+                alert('add text to search');
+            }
+
         });
     </script>
 
